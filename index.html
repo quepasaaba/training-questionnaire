@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Training Questionnaire · QuePasa.ABA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Caveat:wght@500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   SETTINGS — the only line you need to change.
+   Submissions are emailed to this address (via FormSubmit.co).
+   ============================================================ */
+:root{
+  --ink:#3a2433; --ink-soft:#6a5262; --muted:#9a8692;
+  --cream:#fff7f6; --paper:#ffffff; --line:#f1dfe3;
+  --teal:#d94a82; --teal-deep:#7c2654; --teal-soft:#fde8f0;
+  --coral:#ff6b6b; --coral-soft:#ffe9e7;
+  --mango:#ffbe5c; --flamingo:#ff8fb8; --sea:#55c9bb;
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--cream);color:var(--ink);font-family:Outfit,system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,input,textarea,select{font:inherit;color:inherit}
+
+/* ---------- Header ---------- */
+.hero{position:relative;overflow:hidden;background:linear-gradient(170deg,#c93d7c 0%,#e8588c 35%,#f9808a 68%,#ffb48e 100%);color:#fff;padding:26px 20px 210px}
+@media (max-width:560px){.hero{padding-bottom:170px}}
+.hero svg.sun{position:absolute;left:50%;bottom:-2px;transform:translateX(-50%);width:min(760px,150%);height:auto;pointer-events:none;z-index:1}
+.hero-top{position:relative;z-index:2;max-width:760px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.mark{font-family:Fraunces,Georgia,serif;font-size:22px;font-weight:600;letter-spacing:-.2px;line-height:1.1}
+.mark .dot{color:#ffe7a3}
+.mark small{display:block;font-family:Outfit;font-weight:400;font-size:13px;letter-spacing:.2px;color:rgba(255,255,255,.88);margin-top:3px}
+.lang{display:flex;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:3px}
+.lang button{border:0;background:none;color:#fff;padding:6px 14px;border-radius:999px;cursor:pointer;font-weight:600;font-size:14px;letter-spacing:.5px}
+.lang button.on{background:#fff;color:var(--teal-deep)}
+.hero-copy{position:relative;z-index:2;max-width:760px;margin:40px auto 0;text-align:center;text-shadow:0 1px 14px rgba(124,38,84,.28)}
+.eyebrow{display:inline-block;font-family:Caveat,cursive;font-size:27px;color:#fff1b8;font-weight:700;transform:rotate(-2deg)}
+.hero h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(32px,6vw,50px);line-height:1.08;letter-spacing:-.5px;margin:4px 0 14px}
+.hero h1 em{color:#ffe7a3;font-style:italic;font-weight:400}
+.hero p.sub{max-width:540px;margin:0 auto;color:rgba(255,255,255,.94);font-size:17px}
+
+/* ---------- Layout ---------- */
+main{max-width:760px;margin:-56px auto 0;padding:0 16px 60px;position:relative;z-index:3}
+.card{background:var(--paper);border-radius:var(--radius);box-shadow:0 18px 50px -22px rgba(124,38,84,.30);padding:28px 26px}
+@media (max-width:560px){.card{padding:22px 18px}}
+.intro{display:flex;gap:14px;background:#fff3f5;border:1.5px dashed #f5a9c4;border-radius:16px;padding:16px 18px;color:var(--ink-soft);font-size:15px;margin-bottom:24px}
+.avatar{flex:none;width:46px;height:46px;border-radius:50%;background:linear-gradient(140deg,var(--flamingo),var(--mango));color:#fff;font-family:Fraunces,serif;font-size:22px;font-weight:600;display:grid;place-items:center}
+.intro .hi{font-weight:600;color:var(--teal-deep);margin:0 0 4px}
+.intro p{margin:0 0 6px}
+.sig{font-family:Caveat,cursive;font-size:24px;color:var(--coral);line-height:1}
+
+/* ---------- Stepper ---------- */
+.steps{display:flex;gap:6px;margin-bottom:8px}
+.steps span{flex:1;height:6px;border-radius:6px;background:var(--line);transition:background .3s}
+.steps span.past{background:var(--teal)}
+.steps span.now{background:linear-gradient(90deg,var(--teal),var(--mango))}
+.step-meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:22px}
+.step-meta b{color:var(--teal);font-weight:600}
+h2.sec{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:30px;letter-spacing:-.3px;margin:0 0 4px;color:var(--teal-deep);display:inline-block;background:linear-gradient(transparent 66%,rgba(255,190,92,.42) 66%);padding:0 2px}
+.sec-note{color:var(--ink-soft);font-size:16px;margin:4px 0 20px}
+.conf{display:flex;gap:10px;align-items:flex-start;background:var(--teal-soft);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--teal-deep);margin-bottom:20px}
+.conf svg{flex:none;margin-top:2px}
+
+/* ---------- Fields ---------- */
+.q{padding:18px 0;border-top:1px dashed var(--line)}
+.q:first-of-type{border-top:0;padding-top:4px}
+.q > label.ql,.q > .ql{display:flex;gap:10px;font-weight:600;font-size:16px;margin-bottom:10px}
+.num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;font-size:13px;display:grid;place-items:center;margin-top:-1px}
+.req{color:var(--coral);margin-left:2px}
+.help{font-size:14px;color:var(--muted);margin:-4px 0 10px 36px}
+.q.nonum .help{margin-left:0}
+.fieldwrap{margin-left:36px}
+.q.nonum .fieldwrap{margin-left:0}
+@media (max-width:560px){.fieldwrap,.help{margin-left:0}}
+input[type=text],input[type=email],input[type=tel],input[type=number],textarea{width:100%;border:1.5px solid var(--line);background:#fffbfc;border-radius:12px;padding:11px 13px;outline:none;transition:border .2s,box-shadow .2s}
+textarea{min-height:96px;resize:vertical}
+input:focus,textarea:focus{border-color:var(--flamingo);box-shadow:0 0 0 4px rgba(255,143,184,.22)}
+.err input,.err textarea{border-color:var(--coral)}
+.errmsg{color:var(--coral);font-size:13px;margin-top:6px;display:none}
+.err .errmsg{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}}
+.sub-l{display:block;font-size:13px;font-weight:500;color:var(--ink-soft);margin-bottom:5px}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;cursor:pointer;transition:all .15s;background:#fffbfc}
+.opt:hover{border-color:var(--flamingo)}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt .box{flex:none;width:20px;height:20px;border:2px solid #d9bfca;border-radius:6px;display:grid;place-items:center;transition:all .15s}
+.opt.radio .box{border-radius:50%}
+.opt.sel{border-color:var(--teal);background:var(--teal-soft)}
+.opt.sel .box{border-color:var(--teal);background:var(--teal)}
+.opt.sel .box::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
+.opt:not(.radio).sel .box::after{width:5px;height:10px;border-radius:0;background:none;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.opt:focus-within{box-shadow:0 0 0 4px rgba(255,143,184,.22)}
+.other-in{margin-top:8px}
+.callout{margin-top:12px;display:flex;gap:10px;background:#fff5e6;border-radius:12px;padding:12px 14px;font-size:14px;color:#7a4b1e}
+
+.counts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:560px){.counts{grid-template-columns:1fr}}
+.count{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1.5px solid var(--line);border-radius:12px;padding:8px 8px 8px 14px;background:#fffbfc}
+.count span{font-size:15px}
+.count input{width:76px;text-align:center;padding:8px}
+.total{margin-top:10px;font-size:14px;color:var(--teal);font-weight:600}
+
+.resp{display:flex;flex-direction:column;gap:10px}
+.resp-row{display:grid;grid-template-columns:44% 1fr;gap:12px;align-items:center}
+.resp{gap:0}
+.resp-row{display:block;padding:12px 0;border-top:1px solid #f3ece4}
+.resp-row:first-child{border-top:0;padding-top:2px}
+.resp-task{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1.5px solid var(--line);background:#fffbfc;border-radius:999px;padding:7px 13px;font-size:14px;cursor:pointer;transition:all .15s;color:var(--ink-soft)}
+.chip:hover{border-color:var(--flamingo)}
+.chip.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.chip.on::before{content:"✓ ";font-weight:700}
+.resp-row .other-in{margin-top:8px}
+
+/* ---------- Nav ---------- */
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}
+.btn{border:0;border-radius:999px;padding:13px 24px;font-weight:600;cursor:pointer;transition:transform .1s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px}
+.btn:active{transform:translateY(1px)}
+.btn{white-space:nowrap}
+@media (max-width:420px){.btn{padding:12px 18px;font-size:15px}}
+.btn.pri{background:linear-gradient(90deg,#d94a82,#ff7a7a);color:#fff;box-shadow:0 10px 24px -10px rgba(217,74,130,.7)}
+.btn.pri:hover{filter:brightness(1.05)}
+.btn.ghost{background:transparent;color:var(--teal);border:1.5px solid var(--line)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.btn.hidden{visibility:hidden}
+
+/* ---------- Review ---------- */
+.rv-sec{border:1.5px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden}
+.rv-head{display:flex;justify-content:space-between;align-items:center;background:var(--teal-soft);padding:11px 16px}
+.rv-head h3{margin:0;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:18px;color:var(--teal-deep)}
+.rv-head button{border:0;background:none;color:var(--coral);font-weight:600;cursor:pointer;font-size:14px}
+.rv-row{display:grid;grid-template-columns:40% 1fr;gap:12px;padding:10px 16px;border-top:1px solid #f2ebe2;font-size:15px}
+.rv-row:first-of-type{border-top:0}
+.rv-row dt{color:var(--muted)}
+.rv-row dd{margin:0;white-space:pre-wrap;word-break:break-word}
+.rv-row dd.empty{color:#b8aca0}
+@media (max-width:560px){.rv-row{grid-template-columns:1fr;gap:2px}}
+.glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:18px}
+.gl{background:linear-gradient(160deg,#fff,var(--cream));border:1.5px solid var(--line);border-radius:14px;padding:12px 14px}
+.gl small{display:block;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--coral);font-weight:600}
+.gl b{font-weight:600;font-size:15px}
+
+/* ---------- Done ---------- */
+.done{text-align:center;padding:20px 6px}
+.done .badge{width:76px;height:76px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(140deg,var(--teal),var(--flamingo))}
+.done .sig{font-size:30px;margin:-4px 0 20px}
+.done h2{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:36px;margin:0 0 10px;color:var(--teal-deep)}
+.done p{color:var(--ink-soft);max-width:520px;margin:0 auto 18px}
+.alert{background:var(--coral-soft);color:#8a2b1c;border-radius:12px;padding:14px 16px;margin-top:16px;font-size:14px;text-align:left}
+.alert a{color:#8a2b1c;font-weight:600}
+
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 40px}
+footer .stripe{height:4px;width:120px;margin:0 auto 14px;border-radius:4px;background:linear-gradient(90deg,var(--sea),var(--mango),var(--coral),var(--flamingo))}
+.hp{position:absolute;left:-9999px}
+
+@media print{
+  .hero,.nav,.lang,footer,.rv-head button,#printBtn{display:none!important}
+  main{margin:0}.card{box-shadow:none}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <!-- Art-deco sunset -->
+  <svg class="sun" viewBox="0 0 760 200" aria-hidden="true">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fff3c4"/><stop offset=".5" stop-color="#ffd27a"/><stop offset="1" stop-color="#ffa36c"/>
+      </linearGradient>
+      <clipPath id="c"><rect x="0" y="0" width="760" height="200"/></clipPath>
+    </defs>
+    <g clip-path="url(#c)" opacity=".95">
+      <g stroke="#ffffff" stroke-opacity=".22" stroke-width="2">
+        <line x1="380" y1="200" x2="0" y2="40"/><line x1="380" y1="200" x2="90" y2="0"/><line x1="380" y1="200" x2="200" y2="-20"/>
+        <line x1="380" y1="200" x2="310" y2="-30"/><line x1="380" y1="200" x2="450" y2="-30"/><line x1="380" y1="200" x2="560" y2="-20"/>
+        <line x1="380" y1="200" x2="670" y2="0"/><line x1="380" y1="200" x2="760" y2="40"/>
+      </g>
+      <circle cx="380" cy="205" r="120" fill="url(#g)"/>
+      <g fill="#ffffff">
+        <rect x="200" y="150" width="360" height="8" opacity=".55"/>
+        <rect x="210" y="166" width="340" height="10" opacity=".7"/>
+        <rect x="220" y="184" width="320" height="16" opacity=".9"/>
+      </g>
+      <!-- palms -->
+      <g fill="#8a2a5e">
+        <path d="M118 200 C122 150 128 120 140 92 l4 2 C134 122 130 152 128 200Z"/>
+        <path d="M141 92c-22-8-46-4-62 10 20-6 40-6 58 0-16 4-30 14-38 28 14-12 28-18 42-22-6 10-8 22-6 34 6-14 12-24 20-32 4 12 12 22 22 28-4-14-10-24-18-32 20 0 38 8 50 20-8-18-26-30-46-32 14-8 32-10 48-6-16-10-38-10-54-2 6-12 18-20 30-24-18-2-34 6-42 20z"/>
+        <path d="M642 200 C638 160 632 132 622 108 l-4 2 C626 134 630 162 632 200Z"/>
+        <path d="M620 108c20-8 42-4 56 8-18-5-36-4-52 1 14 4 26 12 34 24-12-10-25-15-38-18 5 9 7 20 5 30-5-12-11-21-18-28-4 11-11 20-20 25 4-12 9-21 16-28-18 0-34 7-44 18 7-16 23-27 41-28-12-7-28-9-43-5 14-9 34-9 48-2-5-11-16-18-27-21 16-2 31 5 38 18z"/>
+      </g>
+    </g>
+  </svg>
+  <div class="hero-top">
+    <div class="mark">QuePasa<span class="dot">.</span>ABA<small data-t="tagline"></small></div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="es">ES</button>
+    </div>
+  </div>
+  <div class="hero-copy">
+    <span class="eyebrow" data-t="eyebrow"></span>
+    <h1 data-t="title" data-html="1"></h1>
+    <p class="sub" data-t="heroSub"></p>
+  </div>
+</header>
+
+<main>
+  <div class="card" id="card"></div>
+</main>
+
+<footer>
+  <div class="stripe"></div>
+  Sabrina Prieges, BCBA · QuePasa.ABA · Miami, FL
+</footer>
+
+<script>
+/* =================== SETTINGS =================== */
+const SEND_TO = "quepasa.aba@gmail.com";   // where submissions are emailed
+/* ================================================ */
+
+const UI = {
+  en:{
+    tagline:"Sabrina Prieges, BCBA · Training for ABA agencies",
+    eyebrow:"Hola, thanks for stopping by!",
+    title:"Preliminary Training <em>Questionnaire</em>",
+    heroSub:"Tell me a little about your agency and your team so I can put together training that actually fits, not a one-size-fits-all package.",
+    introHi:"A quick note before you start",
+    sigline:"— Sabrina",
+    time:"Takes about 10 minutes. Your answers save as you go, so you can step away and come back.",
+    intro:"Thank you for reaching out about training for your agency. Please complete the questions below so I can understand your needs and prepare an individualized proposal. Clinical and administrative training are separate services and can be requested individually or together. Pricing depends on the topics, audience, format, and goals for each agency.",
+    step:"Step", of:"of", next:"Next", back:"Back", review:"Review my answers", send:"Send it my way", sending:"Sending…",
+    edit:"Edit", required:"This field is required.", badEmail:"Please enter a valid email address.",
+    reviewTitle:"Quick look before you send", reviewNote:"Here’s everything you shared. Anything look off? Tap Edit on any section to fix it.",
+    glance:{training:"Training", format:"Format", people:"Attendees", rbt:"RBT training", when:"Timeframe"},
+    total:"Total", none:"Not answered", people:"people",
+    doneTitle:"Thank you!", done:"Your inquiry has been submitted, and you will receive a follow-up email within 1–3 business days.", talkSoon:"Talk soon, Sabrina",
+    print:"Print a copy for your records",
+    fail:"Your responses could not be sent automatically. Please ", failLink:"click here to email them", failEnd:" instead, or try again in a moment.",
+    conf:"The following questions help me understand your agency’s current structure and tailor the training to your needs. Your responses will be kept confidential and used only to understand your requirements and prepare a proposal.",
+    otherPh:"Tell me a little more…", otherRole:"What’s their role?", freeResp:"Describe the task and who handles it",
+  },
+  es:{
+    tagline:"Sabrina Prieges, BCBA · Capacitación para agencias de ABA",
+    eyebrow:"¡Hola, gracias por pasar por aquí!",
+    title:"Cuestionario Preliminar de <em>Capacitación</em>",
+    heroSub:"Cuénteme un poco sobre su agencia y su equipo para preparar una capacitación que realmente les funcione, no un paquete genérico.",
+    introHi:"Una nota rápida antes de empezar",
+    sigline:"— Sabrina",
+    time:"Toma unos 10 minutos. Sus respuestas se guardan automáticamente, así que puede salir y regresar cuando quiera.",
+    intro:"Gracias por comunicarse conmigo sobre capacitación para su agencia. Por favor complete las siguientes preguntas para que pueda entender sus necesidades y preparar una propuesta individualizada. La capacitación clínica y la administrativa son servicios separados y pueden solicitarse por separado o en conjunto. El precio depende de los temas, la audiencia, el formato y las metas de cada agencia.",
+    step:"Paso", of:"de", next:"Siguiente", back:"Atrás", review:"Revisar mis respuestas", send:"Enviar cuestionario", sending:"Enviando…",
+    edit:"Editar", required:"Este campo es obligatorio.", badEmail:"Por favor ingrese un correo electrónico válido.",
+    reviewTitle:"Un vistazo antes de enviar", reviewNote:"Aquí está todo lo que compartió. ¿Algo no se ve bien? Toque Editar en cualquier sección para corregirlo.",
+    glance:{training:"Capacitación", format:"Formato", people:"Participantes", rbt:"Capacitación RBT", when:"Fecha"},
+    total:"Total", none:"Sin respuesta", people:"personas",
+    doneTitle:"¡Gracias!", done:"Su consulta ha sido enviada y recibirá un correo de seguimiento dentro de 1 a 3 días hábiles.", talkSoon:"Hasta pronto, Sabrina",
+    print:"Imprimir una copia para sus archivos",
+    fail:"No fue posible enviar sus respuestas automáticamente. Por favor ", failLink:"haga clic aquí para enviarlas por correo", failEnd:", o intente de nuevo en un momento.",
+    conf:"Las siguientes preguntas me ayudan a entender la estructura actual de su agencia y adaptar la capacitación a sus necesidades. Sus respuestas se mantendrán confidenciales y se usarán únicamente para entender sus necesidades y preparar una propuesta.",
+    otherPh:"Cuénteme un poco más…", otherRole:"¿Cuál es su cargo?", freeResp:"Describa la tarea y quién la realiza",
+  }
+};
+
+const L = (en,es)=>({en,es});
+const CLASS_OPTS = [
+  {v:"w2",   ...L("W-2 employees","Empleados W-2")},
+  {v:"1099", ...L("1099 contractors","Contratistas 1099")},
+  {v:"combo",...L("A combination of W-2 and 1099","Una combinación de W-2 y 1099")},
+  {v:"other",...L("Other or unsure","Otro o no estoy seguro(a)"), other:true},
+];
+
+const STEPS = [
+  { id:"agency", title:L("Agency Information","Información de la Agencia"), note:L("First, the basics, so I know who I’m talking to.","Primero lo básico, para saber con quién estoy hablando."), fields:[
+    {id:"agency", type:"text", req:true, label:L("Agency name","Nombre de la agencia")},
+    {type:"pair", items:[
+      {id:"contact", type:"text", req:true, label:L("Primary contact","Contacto principal")},
+      {id:"ctitle",  type:"text", label:L("Title","Cargo")},
+    ]},
+    {type:"pair", items:[
+      {id:"email", type:"email", req:true, label:L("Email","Correo electrónico")},
+      {id:"phone", type:"tel", label:L("Phone number","Teléfono")},
+    ]},
+    {id:"address", type:"text", label:L("Agency address","Dirección de la agencia")},
+  ]},
+  { id:"format", title:L("Training Format & Group Size","Formato y Tamaño del Grupo"), note:L("Big team or small, in person or on Zoom, it all works. This just helps me plan.","Equipo grande o pequeño, presencial o por Zoom, todo funciona. Esto solo me ayuda a planificar."), fields:[
+    {id:"q1", n:1, type:"radio", label:L("Would you prefer the training to be held in person or virtually?","¿Prefiere que la capacitación sea presencial o virtual?"),
+      options:[{v:"inperson",...L("In person","Presencial")},{v:"virtual",...L("Virtually","Virtual")}]},
+    {id:"q2", n:2, type:"radio", showIf:s=>s.q1==="inperson",
+      label:L("Where would you like the in-person training held?","¿Dónde le gustaría realizar la capacitación presencial?"),
+      options:[{v:"agency",...L("At your agency","En su agencia")},
+               {v:"elsewhere",...L("At another location","En otro lugar"),other:true,otherPh:L("Which location?","¿Qué lugar?")},
+               {v:"unsure",...L("I’m not sure yet","Todavía no estoy seguro(a)")}],
+      callout:L("If your agency does not have enough space for all participating analysts and staff, I have an office in Kendall that your group is welcome to use.",
+                "Si su agencia no cuenta con espacio suficiente para todos los analistas y el personal participante, tengo una oficina en Kendall que su grupo puede utilizar.")},
+    {id:"q3", n:3, type:"counts", label:L("Approximately how many people would attend?","¿Aproximadamente cuántas personas asistirían?"),
+      items:[{k:"analysts",...L("Analysts/BCBAs","Analistas/BCBAs")},{k:"assistants",...L("Assistant analysts","Analistas asistentes")},
+             {k:"admin",...L("Administrative staff","Personal administrativo")},{k:"other",...L("Other staff or personnel","Otro personal")}]},
+  ]},
+  { id:"topics", title:L("Training Topics","Temas de Capacitación"), note:L("The good part. Tell me what’s really going on, so the training solves real problems for your team.","La parte buena. Cuénteme qué está pasando de verdad, para que la capacitación resuelva problemas reales de su equipo."), fields:[
+    {id:"q4", n:4, type:"check", label:L("Which training would you like to discuss?","¿Qué capacitación le gustaría conversar?"),
+      help:L("Select all that apply. Clinical and administrative training are offered separately — if you are interested in both, please describe the needs you have in each area.",
+             "Seleccione todas las que apliquen. La capacitación clínica y la administrativa se ofrecen por separado; si le interesan ambas, por favor describa sus necesidades en cada área."),
+      options:[{v:"clinical",...L("Clinical training","Capacitación clínica")},{v:"admin",...L("Administrative training","Capacitación administrativa")},
+               {v:"both",...L("Both clinical and administrative training","Capacitación clínica y administrativa")},
+               {v:"other",...L("Other topics you would like addressed","Otros temas que le gustaría abordar"),other:true}]},
+    {id:"q5", n:5, type:"textarea", ph:L("e.g., our treatment plans keep coming back for revisions, or our new analysts need more support with…","p. ej., nuestros planes de tratamiento siguen regresando con correcciones, o nuestros analistas nuevos necesitan más apoyo con…"), label:L("What questions, concerns, or specific changes would you most like the training to address?","¿Qué preguntas, inquietudes o cambios específicos le gustaría que la capacitación abordara?")},
+    {id:"q6", n:6, type:"radio", label:L("Are you also interested in RBT training?","¿También le interesa la capacitación para RBTs?"),
+      help:L("RBT training would be arranged and priced separately.","La capacitación para RBTs se coordinaría y cotizaría por separado."),
+      options:[{v:"yes",...L("Yes","Sí")},{v:"no",...L("No","No")},{v:"maybe",...L("Maybe; please provide more information","Tal vez; me gustaría más información")}]},
+    {id:"q6b", type:"number", sub:true, showIf:s=>s.q6==="yes"||s.q6==="maybe", label:L("Approximately how many RBTs would participate?","¿Aproximadamente cuántos RBTs participarían?")},
+  ]},
+  { id:"ops", title:L("Agency Operations","Operaciones de la Agencia"), conf:true, note:L("Every agency runs a little differently, and there are no wrong answers here.","Cada agencia funciona un poco diferente, y aquí no hay respuestas incorrectas."), fields:[
+    {id:"q7", n:7, type:"resp", roles:[{v:"admin",...L("Administrative staff","Personal administrativo")},{v:"bcba",...L("BCBA","BCBA")},{v:"rbt",...L("RBT","RBT")},{v:"owner",...L("Agency owner","Dueño(a) de la agencia")},{v:"other",...L("Other","Otro")}], label:L("Who is responsible for each of the following tasks at your agency?","¿Quién es responsable de cada una de las siguientes tareas en su agencia?"),
+      help:L("Select everyone involved. If a task is shared, just pick more than one.","Seleccione a todos los involucrados. Si una tarea es compartida, puede elegir más de una opción."),
+      items:[{k:"referrals",...L("Sending or processing referrals","Enviar o procesar referidos")},
+             {k:"intake",...L("Collecting intake information and documents","Recopilar información y documentos de admisión")},
+             {k:"review",...L("Reviewing intake information and determining next steps","Revisar la información de admisión y determinar los próximos pasos")},
+             {k:"schedRBT",...L("Scheduling RBTs","Programar horarios de RBTs")},
+             {k:"schedBCBA",...L("Scheduling analysts/BCBAs","Programar horarios de analistas/BCBAs")},
+             {k:"schedAsst",...L("Scheduling assistant analysts","Programar horarios de analistas asistentes")},
+             {k:"billing",...L("Billing and claims follow-up","Facturación y seguimiento de reclamaciones")},
+             {k:"other",...L("Other relevant responsibilities","Otras responsabilidades relevantes"),free:true}]},
+    {id:"q8", n:8, type:"radio", label:L("How are your RBTs currently classified for payment?","¿Cómo están clasificados actualmente sus RBTs para efectos de pago?"), options:CLASS_OPTS},
+    {id:"q9", n:9, type:"radio", label:L("How are your analysts and assistant analysts currently classified for payment?","¿Cómo están clasificados actualmente sus analistas y analistas asistentes para efectos de pago?"), options:CLASS_OPTS},
+    {id:"q10", n:10, type:"textarea", ph:L("e.g., we’ve grown quickly and our intake process hasn’t caught up yet…","p. ej., hemos crecido rápido y nuestro proceso de admisión todavía no se ha puesto al día…"), label:L("Is there anything about your agency’s staffing or workflow that would help me understand what you hope to get from the training?","¿Hay algo sobre el personal o el flujo de trabajo de su agencia que me ayude a entender lo que espera obtener de la capacitación?")},
+  ]},
+  { id:"goals", title:L("Goals & Scheduling","Metas y Fechas"), note:L("Almost done! Picture your team the week after the training. What looks different?","¡Ya casi terminamos! Imagínese a su equipo la semana después de la capacitación. ¿Qué se ve diferente?"), fields:[
+    {id:"q11", n:11, type:"textarea", ph:L("e.g., write goals that hold up in an authorization review, run supervision more consistently…","p. ej., redactar metas que se sostengan en una revisión de autorización, hacer la supervisión de forma más consistente…"), label:L("What would you like participants to know or be able to do after the training?","¿Qué le gustaría que los participantes supieran o pudieran hacer después de la capacitación?")},
+    {id:"q12", n:12, type:"text", callout:L("I’ll do my best to accommodate your preferred dates. Because demand for this training is high right now, I do ask for some flexibility with scheduling. Thank you for understanding!","Haré todo lo posible por acomodar sus fechas preferidas. Debido a la alta demanda de esta capacitación en este momento, le pido un poco de flexibilidad con el calendario. ¡Gracias por su comprensión!"), ph:L("e.g., sometime in January, weekday mornings","p. ej., en algún momento de enero, mañanas entre semana"), label:L("Do you have a preferred training date or timeframe?","¿Tiene alguna fecha o periodo preferido para la capacitación?")},
+    {id:"q13", n:13, type:"textarea", ph:L("Budget, timing, a team dynamic I should know about… anything helps.","Presupuesto, fechas, alguna dinámica del equipo que deba conocer… todo ayuda."), label:L("Is there anything else you would like me to consider when preparing a proposal?","¿Hay algo más que le gustaría que considerara al preparar una propuesta?")},
+  ]},
+];
+const REVIEW = STEPS.length; // index of review step
+
+/* ---------------- State ---------------- */
+let lang = "en", cur = 0, s = {};
+try{ const d = JSON.parse(localStorage.getItem("tq-draft")||"null"); if(d){ s=d.s||{}; lang=d.lang||lang; } }catch(e){}
+const urlLang = new URLSearchParams(location.search).get("lang"); if(urlLang==="es"||urlLang==="en") lang = urlLang;
+const save = ()=>{ try{ localStorage.setItem("tq-draft", JSON.stringify({s,lang})); }catch(e){} };
+
+const esc = v => String(v??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const t = k => UI[lang][k];
+const allFields = () => STEPS.flatMap(st=>st.fields.flatMap(f=>f.type==="pair"?f.items:[f]));
+
+/* ---------------- Rendering ---------------- */
+function applyStatic(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach(el=>{
+    const v = t(el.dataset.t); if(el.dataset.html) el.innerHTML = v; else el.textContent = v;
+  });
+  document.querySelectorAll("[data-lang]").forEach(b=>b.classList.toggle("on", b.dataset.lang===lang));
+}
+
+function fieldHTML(f){
+  if(f.showIf && !f.showIf(s)) return "";
+  if(f.type==="pair") return `<div class="q nonum"><div class="grid2">${f.items.map(simpleInput).join("")}</div></div>`;
+  const lab = f.label[lang];
+  if(f.type==="text"||f.type==="email"||f.type==="tel") if(!f.n) return `<div class="q nonum">${simpleInput(f)}</div>`;
+  const head = f.sub
+    ? `<label class="ql" for="${f.id}" style="font-weight:500;font-size:15px;margin-left:36px">${esc(lab)}</label>`
+    : `<label class="ql" for="${f.id}"><span class="num">${f.n}</span><span>${esc(lab)}</span></label>`;
+  const help = f.help ? `<div class="help">${esc(f.help[lang])}</div>` : "";
+  let body = "";
+  switch(f.type){
+    case "text": body = `<input type="text" id="${f.id}" data-f="${f.id}" value="${esc(s[f.id])}" placeholder="${f.ph?esc(f.ph[lang]):""}">` + (f.callout?`<div class="callout"><span>🗓️</span><span>${esc(f.callout[lang])}</span></div>`:""); break;
+    case "number": body = `<input type="number" min="0" id="${f.id}" data-f="${f.id}" value="${esc(s[f.id])}" style="max-width:140px">`; break;
+    case "textarea": body = `<textarea id="${f.id}" data-f="${f.id}" placeholder="${f.ph?esc(f.ph[lang]):""}">${esc(s[f.id])}</textarea>`; break;
+    case "radio": case "check": {
+      const multi = f.type==="check", val = s[f.id] || (multi?[]:"");
+      body = `<div class="opts">` + f.options.map(o=>{
+        const on = multi ? val.includes(o.v) : val===o.v;
+        const other = o.other && on ? `<input type="text" class="other-in" data-f="${f.id}_other" value="${esc(s[f.id+"_other"])}" placeholder="${esc(o.otherPh?o.otherPh[lang]:t("otherPh"))}">` : "";
+        return `<label class="opt ${multi?"":"radio"} ${on?"sel":""}"><input type="${multi?"checkbox":"radio"}" name="${f.id}" value="${o.v}" data-opt="${f.id}" ${on?"checked":""}><span class="box"></span><span>${esc(o[lang])}</span></label>${other}`;
+      }).join("") + `</div>`;
+      if(f.callout) body += `<div class="callout"><span>📍</span><span>${esc(f.callout[lang])}</span></div>`;
+      break;
+    }
+    case "counts": {
+      const v = s[f.id]||{};
+      body = `<div class="counts">` + f.items.map(i=>`<label class="count"><span>${esc(i[lang])}</span><input type="number" min="0" inputmode="numeric" data-f="${f.id}.${i.k}" value="${esc(v[i.k])}"></label>`).join("") +
+        `</div><div class="total" id="total-${f.id}">${totalText(f)}</div>`;
+      break;
+    }
+    case "resp": {
+      const v = s[f.id]||{}, vo = s[f.id+"o"]||{};
+      body = `<div class="resp">` + f.items.map(i=>{
+        if(i.free) return `<div class="resp-row"><div class="resp-task">${esc(i[lang])}</div><input type="text" data-f="${f.id}o.${i.k}" value="${esc(vo[i.k])}" placeholder="${esc(t("freeResp"))}"></div>`;
+        const sel = Array.isArray(v[i.k]) ? v[i.k] : [];
+        const chips = f.roles.map(r=>`<button type="button" class="chip ${sel.includes(r.v)?"on":""}" data-chip="${f.id}" data-k="${i.k}" data-v="${r.v}" aria-pressed="${sel.includes(r.v)}">${esc(r[lang])}</button>`).join("");
+        const other = sel.includes("other") ? `<input type="text" class="other-in" data-f="${f.id}o.${i.k}" value="${esc(vo[i.k])}" placeholder="${esc(t("otherRole"))}">` : "";
+        return `<div class="resp-row"><div class="resp-task">${esc(i[lang])}</div><div class="chips">${chips}</div>${other}</div>`;
+      }).join("") + `</div>`;
+      break;
+    }
+  }
+  return `<div class="q${f.sub?" nonum":""}" style="${f.sub?"border-top:0;padding-top:0":""}">${head}${help}<div class="fieldwrap">${body}</div></div>`;
+}
+function simpleInput(f){
+  return `<div id="w-${f.id}"><label class="sub-l" for="${f.id}">${esc(f.label[lang])}${f.req?'<span class="req">*</span>':""}</label>
+    <input type="${f.type}" id="${f.id}" data-f="${f.id}" value="${esc(s[f.id])}" autocomplete="${{agency:"organization",contact:"name",ctitle:"organization-title",email:"email",phone:"tel",address:"street-address"}[f.id]||"off"}">
+    <div class="errmsg"></div></div>`;
+}
+function totalText(f){
+  const v = s[f.id]||{}; const n = f.items.reduce((a,i)=>a+(parseInt(v[i.k])||0),0);
+  return n ? `${t("total")}: ${n} ${t("people")}` : "";
+}
+
+function stepper(){
+  const n = STEPS.length+1;
+  return `<div class="steps">${Array.from({length:n},(_,i)=>`<span class="${i<cur?"past":i===cur?"now":""}"></span>`).join("")}</div>
+    <div class="step-meta"><span>${t("step")} <b>${cur+1}</b> ${t("of")} ${n}</span><span>${cur<REVIEW?esc(STEPS[cur].title[lang]):esc(t("reviewTitle"))}</span></div>`;
+}
+
+function render(focusTop){
+  applyStatic();
+  const card = document.getElementById("card");
+  if(cur==="done"){ renderDone(); return; }
+  let h = "";
+  if(cur===0) h += `<div class="intro"><div class="avatar">S</div><div><p class="hi">${esc(t("introHi"))}</p><p>${esc(t("intro"))}</p><p style="font-size:14px;color:var(--muted)">${esc(t("time"))}</p><div class="sig">${esc(t("sigline"))}</div></div></div>`;
+  h += stepper();
+  if(cur<REVIEW){
+    const st = STEPS[cur];
+    h += `<h2 class="sec">${esc(st.title[lang])}</h2>${st.note?`<p class="sec-note">${esc(st.note[lang])}</p>`:""}`;
+    if(st.conf) h += `<div class="conf"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>${esc(t("conf"))}</span></div>`;
+    h += st.fields.map(fieldHTML).join("");
+  } else {
+    h += `<h2 class="sec">${esc(t("reviewTitle"))}</h2><p class="sec-note">${esc(t("reviewNote"))}</p>` + reviewHTML(lang);
+    h += `<input class="hp" type="text" id="hp" tabindex="-1" autocomplete="off">`;
+  }
+  h += `<div class="nav">
+    <button type="button" class="btn ghost ${cur===0?"hidden":""}" id="back">← ${t("back")}</button>
+    <button type="button" class="btn pri" id="next">${cur<REVIEW-1?t("next")+" →":cur===REVIEW-1?t("review")+" →":t("send")+" →"}</button></div>`;
+  card.innerHTML = h;
+  if(focusTop) window.scrollTo({top:Math.max(0,card.getBoundingClientRect().top+scrollY-24),behavior:"smooth"});
+}
+
+/* ---------------- Summary ---------------- */
+function optLabel(f,v,lg){ const o=f.options.find(o=>o.v===v); return o?o[lg]:""; }
+function answer(f,lg){
+  const v = s[f.id];
+  switch(f.type){
+    case "radio": { if(!v) return ""; let out = optLabel(f,v,lg); const o=f.options.find(o=>o.v===v); if(o&&o.other&&s[f.id+"_other"]) out += " — "+s[f.id+"_other"]; return out; }
+    case "check": { if(!v||!v.length) return ""; return f.options.filter(o=>v.includes(o.v)).map(o=>o.other&&s[f.id+"_other"]?`${o[lg]}: ${s[f.id+"_other"]}`:o[lg]).join("\n"); }
+    case "counts": { const c=v||{}; const rows=f.items.filter(i=>c[i.k]!==undefined&&c[i.k]!=="").map(i=>`${i[lg]}: ${c[i.k]}`);
+      const tot=f.items.reduce((a,i)=>a+(parseInt(c[i.k])||0),0); return rows.length? rows.join("\n")+`\n${UI[lg].total}: ${tot}`:""; }
+    default: return (v??"").toString().trim();
+  }
+}
+function sections(lg){
+  return STEPS.map((st,si)=>{
+    const rows = [];
+    st.fields.forEach(f=>{
+      const list = f.type==="pair"?f.items:[f];
+      list.forEach(ff=>{
+        if(ff.showIf && !ff.showIf(s)) return;
+        if(ff.type==="resp"){
+          const v=s[ff.id]||{};
+          rows.push({label:`${ff.n}. ${ff.label[lg]}`, value:"", head:true});
+          const vo=s[ff.id+"o"]||{};
+          ff.items.forEach(i=>{
+            let val;
+            if(i.free) val=(vo[i.k]||"").trim();
+            else { const sel=Array.isArray(v[i.k])?v[i.k]:[];
+              val = ff.roles.filter(r=>sel.includes(r.v)).map(r=>r.v==="other"&&(vo[i.k]||"").trim()?`${r[lg]} (${vo[i.k].trim()})`:r[lg]).join(", ");
+              if(sel.length>1) val += lg==="es"?" — compartido":" — shared"; }
+            rows.push({label:"   • "+i[lg], value:val, indent:true});
+          });
+        } else rows.push({label:(ff.n?ff.n+". ":"")+ff.label[lg], value:answer(ff,lg)});
+      });
+    });
+    return {si, title:st.title[lg], rows};
+  });
+}
+function glance(lg){
+  const f = id=>allFields().find(x=>x.id===id);
+  const c = s.q3||{}; const tot = ["analysts","assistants","admin","other"].reduce((a,k)=>a+(parseInt(c[k])||0),0);
+  const tr = (s.q4||[]).filter(v=>v!=="other").map(v=>optLabel(f("q4"),v,lg)).join(", ") || ((s.q4||[]).length?optLabel(f("q4"),"other",lg):"");
+  let fmt = s.q1?optLabel(f("q1"),s.q1,lg):""; if(s.q1==="inperson"&&s.q2) fmt += " · "+optLabel(f("q2"),s.q2,lg);
+  let rbt = s.q6?optLabel(f("q6"),s.q6,lg).split(";")[0]:""; if(rbt && s.q6b && s.q6!=="no") rbt += ` (~${s.q6b})`;
+  const g = UI[lg].glance;
+  return [[g.training,tr],[g.format,fmt],[g.people,tot?`${tot}`:""],[g.rbt,rbt],[g.when,(s.q12||"").trim()]];
+}
+function reviewHTML(lg){
+  const none = UI[lg].none;
+  let h = `<div class="glance">${glance(lg).map(([k,v])=>`<div class="gl"><small>${esc(k)}</small><b>${esc(v||"—")}</b></div>`).join("")}</div>`;
+  sections(lg).forEach(sec=>{
+    h += `<section class="rv-sec"><div class="rv-head"><h3>${esc(sec.title)}</h3><button type="button" data-edit="${sec.si}">${esc(UI[lg].edit)}</button></div><dl style="margin:0">`;
+    sec.rows.forEach(r=>{
+      if(r.head){ h+=`<div class="rv-row" style="grid-template-columns:1fr"><dt style="color:var(--ink);font-weight:600">${esc(r.label)}</dt></div>`; return; }
+      h += `<div class="rv-row"><dt>${esc(r.label.trim())}</dt><dd class="${r.value?"":"empty"}">${esc(r.value||none)}</dd></div>`;
+    });
+    h += `</dl></section>`;
+  });
+  return h;
+}
+function plainSummary(){
+  const bar = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+  const when = new Date().toLocaleString("en-US",{dateStyle:"long",timeStyle:"short"});
+  let out = `TRAINING INQUIRY — ${s.agency||""}\nSubmitted: ${when}\nForm completed in: ${lang==="es"?"Spanish":"English"}\n\n${bar}\nAT A GLANCE\n${bar}\n`;
+  glance("en").forEach(([k,v])=>out+=`${k.padEnd(14)} ${v||"—"}\n`);
+  sections("en").forEach(sec=>{
+    out += `\n${bar}\n${sec.title.toUpperCase()}\n${bar}\n`;
+    sec.rows.forEach(r=>{
+      if(r.head){ out+=`${r.label}\n`; return; }
+      const v = r.value||"—";
+      out += r.indent ? `${r.label}: ${v}\n` : `${r.label}\n   ${v.replace(/\n/g,"\n   ")}\n`;
+    });
+  });
+  return out;
+}
+
+/* ---------------- Validation & navigation ---------------- */
+function validate(){
+  if(cur!==0) return true;
+  let ok = true, first=null;
+  ["agency","contact","email"].forEach(id=>{
+    const w = document.getElementById("w-"+id), v=(s[id]||"").trim();
+    let msg = !v ? t("required") : (id==="email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) ? t("badEmail") : "";
+    w.classList.toggle("err", !!msg); w.querySelector(".errmsg").textContent = msg;
+    if(msg){ ok=false; first=first||document.getElementById(id); }
+  });
+  if(first) first.focus();
+  return ok;
+}
+
+async function submit(btn){
+  if(document.getElementById("hp")?.value) return;
+  btn.disabled = true; btn.textContent = t("sending");
+  const payload = {
+    _subject: "Company Training Inquiry and Information Summary",
+    _template: "box", _replyto: s.email||"", _captcha: "false",
+  };
+  glance("en").forEach(([k,v])=>payload[`★ ${k}`]=v||"—");
+  sections("en").forEach(sec=>sec.rows.forEach(r=>{ if(!r.head) payload[`[${sec.title}] ${r.label.replace("•","").trim()}`] = r.value||"—"; }));
+  payload["Full summary (copy/paste)"] = plainSummary();
+  try{
+    const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(SEND_TO)}`,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(payload)});
+    const j = await res.json().catch(()=>({}));
+    if(!res.ok || String(j.success)!=="true") throw new Error(j.message||res.status);
+    cur = "done"; render(true);
+    try{ localStorage.removeItem("tq-draft"); }catch(e){}
+  }catch(e){
+    btn.disabled=false; btn.textContent = t("send")+" →";
+    const mail = `mailto:${SEND_TO}?subject=${encodeURIComponent(payload._subject)}&body=${encodeURIComponent(plainSummary().slice(0,1800))}`;
+    let a = document.getElementById("failbox");
+    if(!a){ a=document.createElement("div"); a.id="failbox"; a.className="alert"; document.getElementById("card").appendChild(a); }
+    a.innerHTML = `${esc(t("fail"))}<a href="${mail}">${esc(t("failLink"))}</a>${esc(t("failEnd"))}`;
+  }
+}
+
+function renderDone(){
+  const card = document.getElementById("card");
+  card.innerHTML = `<div class="done"><div class="badge"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h2>${esc(t("doneTitle"))}</h2><p>${esc(t("done"))}</p><div class="sig">${esc(t("talkSoon"))}</div>
+    <button type="button" class="btn ghost" id="printBtn">🖨 ${esc(t("print"))}</button></div>
+    <div id="printcopy" style="margin-top:24px">${reviewHTML(lang)}</div>`;
+}
+
+/* ---------------- Events ---------------- */
+document.addEventListener("input", e=>{
+  const k = e.target.dataset.f; if(!k) return;
+  if(k.includes(".")){ const [a,b]=k.split("."); s[a]=s[a]||{}; s[a][b]=e.target.value;
+    const f = allFields().find(x=>x.id===a); const tEl=document.getElementById("total-"+a); if(tEl&&f) tEl.textContent=totalText(f);
+  } else s[k]=e.target.value;
+  const w = e.target.closest(".err"); if(w) w.classList.remove("err");
+  save();
+});
+document.addEventListener("change", e=>{
+  const id = e.target.dataset.opt; if(!id) return;
+  const f = allFields().find(x=>x.id===id);
+  if(f.type==="check"){ const a=new Set(s[id]||[]); e.target.checked?a.add(e.target.value):a.delete(e.target.value); s[id]=[...a]; }
+  else s[id]=e.target.value;
+  save(); render();
+  const o = document.querySelector(`[data-f="${id}_other"]`); if(o && f.options.find(x=>x.v===e.target.value)?.other && e.target.checked) o.focus();
+});
+document.addEventListener("click", e=>{
+  const lb = e.target.closest("[data-lang]"); if(lb){ lang=lb.dataset.lang; save(); render(); return; }
+  const ch = e.target.closest("[data-chip]"); if(ch){
+    const id=ch.dataset.chip, k=ch.dataset.k, v=ch.dataset.v; s[id]=s[id]||{};
+    const a=new Set(Array.isArray(s[id][k])?s[id][k]:[]); a.has(v)?a.delete(v):a.add(v); s[id][k]=[...a];
+    const y=scrollY; save(); render(); scrollTo(0,y);
+    if(v==="other"&&a.has(v)) document.querySelector(`[data-f="${id}o.${k}"]`)?.focus({preventScroll:true});
+    return; }
+  if(e.target.closest("#printBtn")){ window.print(); return; }
+  const ed = e.target.closest("[data-edit]"); if(ed){ cur=+ed.dataset.edit; render(true); return; }
+  if(e.target.closest("#back")){ cur--; render(true); return; }
+  const nx = e.target.closest("#next"); if(nx){
+    if(cur===REVIEW){ submit(nx); return; }
+    if(!validate()) return;
+    cur++; render(true);
+  }
+});
+render();
+</script>
+</body>
+</html>
