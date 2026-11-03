@@ -224,6 +224,7 @@ footer .stripe{height:4px;width:120px;margin:0 auto 14px;border-radius:4px;backg
 <script>
 /* =================== SETTINGS =================== */
 const SEND_TO = "quepasa.aba@gmail.com";   // where submissions are emailed
+const WEB3FORMS_KEY = "edf962f4-606b-48ef-a566-bd7735382690";     // access key from web3forms.com (emailed to SEND_TO)
 /* ================================================ */
 
 const UI = {
@@ -535,24 +536,26 @@ async function submit(btn){
   if(document.getElementById("hp")?.value) return;
   btn.disabled = true; btn.textContent = t("sending");
   const payload = {
-    _subject: "Company Training Inquiry and Information Summary",
-    _template: "box", _replyto: s.email||"", _captcha: "false",
+    access_key: WEB3FORMS_KEY,
+    subject: "Company Training Inquiry and Information Summary",
+    from_name: (s.agency||"Training Questionnaire").trim(),
+    replyto: (s.email||"").trim(),
   };
   glance("en").forEach(([k,v])=>payload[`★ ${k}`]=v||"—");
   sections("en").forEach(sec=>sec.rows.forEach(r=>{ if(!r.head) payload[`[${sec.title}] ${r.label.replace("•","").trim()}`] = r.value||"—"; }));
   payload["Full summary (copy/paste)"] = plainSummary();
   try{
-    const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(SEND_TO)}`,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(payload)});
+    const res = await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(payload)});
     const j = await res.json().catch(()=>({}));
-    if(!res.ok || String(j.success)!=="true") throw new Error(j.message||res.status);
+    if(!res.ok || j.success!==true) throw new Error(j.message||("HTTP "+res.status));
     cur = "done"; render(true);
     try{ localStorage.removeItem("tq-draft"); }catch(e){}
   }catch(e){
     btn.disabled=false; btn.textContent = t("send")+" →";
-    const mail = `mailto:${SEND_TO}?subject=${encodeURIComponent(payload._subject)}&body=${encodeURIComponent(plainSummary().slice(0,1800))}`;
+    const mail = `mailto:${SEND_TO}?subject=${encodeURIComponent(payload.subject)}&body=${encodeURIComponent(plainSummary().slice(0,1800))}`;
     let a = document.getElementById("failbox");
     if(!a){ a=document.createElement("div"); a.id="failbox"; a.className="alert"; document.getElementById("card").appendChild(a); }
-    a.innerHTML = `${esc(t("fail"))}<a href="${mail}">${esc(t("failLink"))}</a>${esc(t("failEnd"))}`;
+    a.innerHTML = `${esc(t("fail"))}<a href="${mail}">${esc(t("failLink"))}</a>${esc(t("failEnd"))}<div style="margin-top:8px;font-size:12px;opacity:.7">Details: ${esc(e&&e.message||e)}</div>`;
   }
 }
 
